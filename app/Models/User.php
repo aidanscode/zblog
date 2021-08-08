@@ -28,4 +28,14 @@ class User extends Authenticatable {
 
     Auth::login($user);
   }
+
+  public function blogs() {
+    return $this->hasMany(Blog::class);
+  }
+
+  public function canCreateNewBlog() {
+    $blogs = $this->blogs;
+
+    return count($blogs) < 3;
+  }
 }

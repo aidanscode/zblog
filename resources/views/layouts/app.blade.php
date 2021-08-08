@@ -11,6 +11,7 @@
   </head>
   <body>
     @include('includes.navbar')
+    @include('includes.messages')
 
     @yield('content')
 
