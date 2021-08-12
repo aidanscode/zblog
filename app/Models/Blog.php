@@ -10,6 +10,14 @@ class Blog extends Model {
     'user_id', 'display_name', 'subdomain'
   ];
 
+  public function creator() {
+    return $this->belongsTo(User::class, 'user_id');
+  }
+
+  public function posts() {
+    return $this->hasMany(Post::class);
+  }
+
   public function getBlogIndexUrl() {
     return route('blog.index', ['blog' => $this->subdomain]);
   }
