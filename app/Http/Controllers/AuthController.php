@@ -31,10 +31,9 @@ class AuthController extends Controller {
     }
 
     $user = Socialite::driver($provider)->user();
-
     User::findOrCreateUserAndLogin($sourceTypeId, $user->getEmail(), $user->getName());
 
-    return redirect(route('page.index'));
+    return redirect(route('profile.index'));
   }
 
 }
