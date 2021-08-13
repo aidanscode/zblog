@@ -10,7 +10,7 @@
           <a class="nav-link" href="{{ $blog->getBlogIndexUrl() }}">Home</a>
         </li>
         <li class="nav-item">
-          @if($blog->canUserManagePosts(auth()->user()))
+          @if($blog->canUserManageBlog(auth()->user()))
           <a class="nav-link" href="{{ $blog->getBlogManageUrl() }}">Manage Posts</a>
           @endif
         </li>

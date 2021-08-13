@@ -8,8 +8,11 @@ use App\Models\Blog;
 class BlogController extends Controller {
 
   public function index(Blog $blog) {
+    $posts = $blog->posts()->orderBy('created_at', 'DESC')->paginate(15);
+
     return view('blog.index', [
-      'blog' => $blog
+      'blog' => $blog,
+      'posts' => $posts
     ]);
   }
 

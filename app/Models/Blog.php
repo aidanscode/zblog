@@ -22,7 +22,7 @@ class Blog extends Model {
     return $this->display_name;
   }
 
-  public function canUserManagePosts(?User $user) {
+  public function canUserManageBlog(?User $user) {
     if (is_null($user)) {
       return false;
     }
