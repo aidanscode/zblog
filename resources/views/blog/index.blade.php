@@ -3,5 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-  <h1>Welcome!</h1>
+<div class="container">
+  <h1 class="float-start">Welcome to {{ $blog->getDisplayName() }}!</h1>
+</div>
 @endsection

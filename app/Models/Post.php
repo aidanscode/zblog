@@ -14,4 +14,18 @@ class Post extends Model {
     return $this->belongsTo(Blog::class);
   }
 
+  /**
+   * ROUTES
+   */
+  public function getViewUrl(Blog $blog = null) {
+    if (is_null($blog) || $blog->id !== $this->blog_id) {
+      $blog = $this->blog;
+    }
+
+    return route('post.view', [
+      'blog' => $blog->subdomain,
+      'post' => $this
+    ]);
+  }
+
 }

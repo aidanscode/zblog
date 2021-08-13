@@ -13,4 +13,13 @@ class BlogController extends Controller {
     ]);
   }
 
+  public function manage(Blog $blog) {
+    $posts = $blog->posts()->orderBy('created_at', 'DESC')->paginate(15);
+
+    return view('blog.manage', [
+      'blog' => $blog,
+      'posts' => $posts
+    ]);
+  }
+
 }

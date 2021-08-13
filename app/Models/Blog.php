@@ -18,12 +18,27 @@ class Blog extends Model {
     return $this->hasMany(Post::class);
   }
 
+  public function getDisplayName() {
+    return $this->display_name;
+  }
+
+  public function canUserManagePosts(?User $user) {
+    if (is_null($user)) {
+      return false;
+    }
+
+    return $user->id === $this->id;
+  }
+
+  /**
+   * ROUTES
+   */
   public function getBlogIndexUrl() {
     return route('blog.index', ['blog' => $this->subdomain]);
   }
 
-  public function getDisplayName() {
-    return $this->display_name;
+  public function getBlogManageUrl() {
+    return route('blog.manage', ['blog' => $this->subdomain]);
   }
 
 }

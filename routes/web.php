@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Subdomain\PostController;
 use App\Http\Controllers\Subdomain\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
@@ -8,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
   Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+
+  Route::get('/manage', [BlogController::class, 'manage'])->name('blog.manage');
+
+  Route::get('/post/{post}', [PostController::class, 'index'])->name('post.view');
 });
 
 Route::prefix('/auth')->group(function() {
