@@ -18,7 +18,10 @@ Route::prefix('/auth')->group(function() {
   Route::get('/callback/{provider}', [AuthController::class, 'providerCallback'])->name('auth.provider.callback');
 });
 
+Route::middleware('auth')->group(function() {
+  Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+  Route::get('/profile/create_blog', [ProfileController::class, 'createBlog'])->name('profile.create_blog');
+  Route::post('/profile/create_blog', [ProfileController::class, 'storeBlog'])->name('profile.store_blog');
+});
+
 Route::view('/', 'pages.index')->name('page.index');
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/profile/create_blog', [ProfileController::class, 'createBlog'])->name('profile.create_blog');
-Route::post('/profile/create_blog', [ProfileController::class, 'storeBlog'])->name('profile.store_blog');

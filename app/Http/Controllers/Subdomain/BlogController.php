@@ -8,7 +8,9 @@ use App\Models\Blog;
 class BlogController extends Controller {
 
   public function index(Blog $blog) {
-    return "Welcome to {$blog->display_name}!";
+    return view('blog.index', [
+      'blog' => $blog
+    ]);
   }
 
 }

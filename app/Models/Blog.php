@@ -22,4 +22,8 @@ class Blog extends Model {
     return route('blog.index', ['blog' => $this->subdomain]);
   }
 
+  public function getDisplayName() {
+    return $this->display_name;
+  }
+
 }
