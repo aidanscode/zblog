@@ -6,7 +6,7 @@
 <div class="container">
   <div class="d-block">
     <h1 class="float-start">Post Management</h1>
-    <button class="btn btn-primary float-end mt-2">Create New Post</button>
+    <a href="{{ route('post.create', ['blog' => $blog->subdomain]) }}" class="btn btn-primary float-end mt-2">Create New Post</a>
   </div>
   <div class="clearfix"></div>
 

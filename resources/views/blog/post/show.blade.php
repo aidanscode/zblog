@@ -10,6 +10,6 @@
   </div>
   <div class="clearfix"></div>
 
-  {{ $post->content }}
+  {!! $post->getSafeFormattedContent() !!}
 </div>
 @endsection
