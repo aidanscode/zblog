@@ -4,21 +4,9 @@ An open blogging platform where users can create and control their own blogs.
 
 ## Todo (Basically all functionality)
 
-* Users can create 1+ blogs
+* Need some way of limiting blogs per user so nobody makes a billion blogs and reserves all the subdomains
 
-  * Accessible through the unique subdomain of their choosing
-
-  * Need some way of limiting so nobody makes a billion blogs and reserves all the subdomains
-
-    * Possibly max active blogs per user. Can add more by deleting existing ones
-
-    * Pay to increase max count(?)
-
-* On their own blog, can create new posts using a markdown/WYSIWYG editor
-
-  * Title, content, tags(?)
-
-* Anyone should be able to read any blog, but only the blog's creator should be able to manage it
+  * Possibly max active blogs per user. Can add more by deleting existing ones
 
 * Blog management features:
 
@@ -37,3 +25,7 @@ An open blogging platform where users can create and control their own blogs.
 * Generally available features:
 
   * Create comments on others' blogs if allowed (possibly must be signed into account to do this)
+
+* MD editor/viewer should syntax highlight code
+
+* Posts should have content histories, so past content of an edited post is not lost. Should be able to click see all histories of a blog post
