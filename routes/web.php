@@ -17,7 +17,8 @@ Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
     Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
   });
 
-  Route::get('/post/{post}', [PostController::class, 'index'])->name('post.view');
+  Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+  Route::get('/post/{post}/content', [PostController::class, 'getContent'])->name('post.getContent');
 });
 
 Route::domain('dev.aidanmurphey.com')->group(function() {

@@ -21,11 +21,8 @@ class Post extends Model {
     return $this->belongsTo(Blog::class);
   }
 
-  public function getSafeFormattedContent() : string {
-    $safe = e($this->content);
-    $formatNewlines = nl2br($safe);
-
-    return $formatNewlines;
+  public function getContent() {
+    return $this->content;
   }
 
   /**
@@ -36,7 +33,18 @@ class Post extends Model {
       $blog = $this->blog;
     }
 
-    return route('post.view', [
+    return route('post.show', [
+      'blog' => $blog->subdomain,
+      'post' => $this
+    ]);
+  }
+
+  public function getContentUrl(Blog $blog = null) {
+    if (is_null($blog) || $blog->id !== $this->blog_id) {
+      $blog = $this->blog;
+    }
+
+    return route('post.getContent', [
       'blog' => $blog->subdomain,
       'post' => $this
     ]);

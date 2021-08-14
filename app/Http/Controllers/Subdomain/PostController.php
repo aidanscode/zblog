@@ -10,10 +10,19 @@ use App\Models\Post;
 
 class PostController extends Controller {
 
-  public function index(Blog $blog, Post $post) {
+  public function show(Blog $blog, Post $post) {
     return view('blog.post.show', [
       'blog' => $blog,
       'post' => $post
+    ]);
+  }
+
+  public function getContent(Blog $blog, Post $post) {
+    return response()->json([
+      'success' => true,
+      'data' => [
+        'content' => $post->getContent()
+      ]
     ]);
   }
 
