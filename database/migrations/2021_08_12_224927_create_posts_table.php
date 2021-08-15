@@ -11,9 +11,10 @@ class CreatePostsTable extends Migration {
       $table->id();
       $table->foreignId('blog_id');
       $table->foreignId('author_id');
-      $table->string('title');
-      $table->text('content');
       $table->timestamps();
+
+      $table->foreign('blog_id')->references('id')->on('blogs');
+      $table->foreign('author_id')->references('id')->on('users');
     });
   }
 

@@ -10,19 +10,41 @@ use App\Models\Post;
 
 class PostController extends Controller {
 
-  public function show(Blog $blog, Post $post) {
+  public function show(Blog $blog, Post $post, $version = 'latest') {
+    $version = is_numeric($version) ? intval($version) : 'latest';
+    $postContent = $post->getContentVersion($version);
+    if (is_null($postContent)) {
+      abort(404);
+    }
+
     return view('blog.post.show', [
       'blog' => $blog,
-      'post' => $post
+      'post' => $post,
+      'version' => $version
     ]);
   }
 
-  public function getContent(Blog $blog, Post $post) {
+  public function getContent(Blog $blog, Post $post, $version = 'latest') {
+    $version = is_numeric($version) ? intval($version) : 'latest';
+
+    $postContent = $post->getContentVersion($version);
+    if (is_null($postContent)) {
+      abort(404);
+    }
+
     return response()->json([
       'success' => true,
       'data' => [
-        'content' => $post->getContent()
+        'title' => $postContent->getTitle(),
+        'content' => $postContent->getContent()
       ]
+    ]);
+  }
+
+  public function getVersionHistory(Blog $blog, Post $post) {
+    return view('blog.post.version_history', [
+      'blog' => $blog,
+      'post' => $post
     ]);
   }
 
@@ -36,13 +58,35 @@ class PostController extends Controller {
       'content' => 'required|string|min:1'
     ]);
 
-    $post = $blog->posts()->create([
-      'author_id' => auth()->id(),
-      'title' => $request->input('title'),
-      'content' => $request->input('content')
-    ]);
+    $post = Post::saveBlogPost(
+      $blog,
+      auth()->user(),
+      $request->input('title'),
+      $request->input('content')
+    );
 
     return redirect($post->getViewUrl($blog))->with('success', 'Your post has been published!');
+  }
+
+  public function edit(Blog $blog, Post $post) {
+    return view('blog.post.edit', [
+      'blog' => $blog,
+      'post' => $post
+    ]);
+  }
+
+  public function update(Request $request, Blog $blog, Post $post) {
+    $request->validate([
+      'title' => 'required|string|min:1',
+      'content' => 'required|string|min:1'
+    ]);
+
+    $post->saveNewVersion(
+      $request->input('title'),
+      $request->input('content')
+    );
+
+    return redirect($post->getViewUrl($blog))->with('success', 'You have updated your blog post!');
   }
 
 }

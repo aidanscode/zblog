@@ -8,7 +8,7 @@
 
   <h3 class="mt-3">Check out my recent posts!</h3>
   @forelse($posts as $post)
-    <p><a href="{{ $post->getViewUrl($blog) }}">{{ $post->title }}</a> (Posted {{ $post->created_at->toDateTimeString() }})</p>
+    <p><a href="{{ $post->getViewUrl($blog) }}">{{ $post->getLatestTitle() }}</a> (Posted {{ $post->created_at->toDateTimeString() }})</p>
   @empty
     <p>No posts yet, stay tuned!</p>
   @endforelse

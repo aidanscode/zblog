@@ -15,10 +15,13 @@ Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
 
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/post/{post}/edit', [PostController::class, 'update'])->name('post.update');
   });
 
-  Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
-  Route::get('/post/{post}/content', [PostController::class, 'getContent'])->name('post.getContent');
+  Route::get('/post/{post}/history', [PostController::class, 'getVersionHistory'])->name('post.versionHistory');
+  Route::get('/post/{post}/{version?}', [PostController::class, 'show'])->name('post.show');
+  Route::get('/post/{post}/content/{version?}', [PostController::class, 'getContent'])->name('post.getContent');
 });
 
 Route::domain('dev.aidanmurphey.com')->group(function() {
