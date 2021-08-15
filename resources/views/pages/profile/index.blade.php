@@ -6,9 +6,11 @@
 <div class="container">
   <div>
     <h1 class="float-start">My Blogs</h1>
+    @if(auth()->user()->canCreateNewBlog())
     <a href="{{ route('profile.create_blog') }}" class="btn btn-primary float-end">
       Create Blog
     </a>
+    @endif
   </div>
 
   <table class="table text-center">
