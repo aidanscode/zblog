@@ -6,8 +6,6 @@ An open blogging platform where users can create and control their own blogs.
 
 * Blog management features:
 
-  * Change name
-
   * Delete blog. Possibly a data export when deleting
 
   * Change theme(?)
