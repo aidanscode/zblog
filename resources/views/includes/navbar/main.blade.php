@@ -9,9 +9,11 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('page.index') }}">Home</a>
         </li>
+        @auth
         <li class="nav-item">
           <a class="nav-link" href="{{ route('profile.index') }}">My Blogs</a>
         </li>
+        @endauth
       </ul>
       <div class="float-end">
         @if(auth()->check())
