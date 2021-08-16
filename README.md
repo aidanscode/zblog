@@ -4,6 +4,8 @@ An open blogging platform where users can create and control their own blogs.
 
 ## Todo
 
+* Stop hardcoding domains (& subdomains)
+
 * Blog management features:
 
   * Delete blog. Possibly a data export when deleting
