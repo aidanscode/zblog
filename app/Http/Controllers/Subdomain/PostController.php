@@ -89,4 +89,10 @@ class PostController extends Controller {
     return redirect($post->getViewUrl($blog))->with('success', 'You have updated your blog post!');
   }
 
+  public function delete(Blog $blog, Post $post) {
+    $post->delete();
+
+    return redirect(route('blog.manage', ['blog' => $blog->subdomain]))->with('success', 'Successfully deleted blog post!');
+  }
+
 }

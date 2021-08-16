@@ -12,6 +12,7 @@ class CreatePostsTable extends Migration {
       $table->foreignId('blog_id');
       $table->foreignId('author_id');
       $table->timestamps();
+      $table->softDeletes();
 
       $table->foreign('blog_id')->references('id')->on('blogs');
       $table->foreign('author_id')->references('id')->on('users');

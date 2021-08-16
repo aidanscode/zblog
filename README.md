@@ -12,8 +12,6 @@ An open blogging platform where users can create and control their own blogs.
 
   * Change theme(?)
 
-  * CRUD posts
-
   * Track metrics (views, unique views(?))
 
   * Manage comments (allow, disable, possibly delete?)

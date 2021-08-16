@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model {
+
+  use SoftDeletes;
 
   protected $with = ['contents'];
 
@@ -115,6 +118,10 @@ class Post extends Model {
 
   public function getVersionHistoryUrl(Blog $blog = null) {
     return $this->getUrlForRouteName('post.versionHistory', $blog);
+  }
+
+  public function getDeleteUrl(Blog $blog = null) {
+    return $this->getUrlForRouteName('post.delete', $blog);
   }
 
 }

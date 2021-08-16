@@ -4,7 +4,6 @@ use App\Http\Controllers\Subdomain\PostController;
 use App\Http\Controllers\Subdomain\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
@@ -17,6 +16,7 @@ Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
     Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
     Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
     Route::post('/post/{post}/edit', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/{post}', [PostController::class, 'delete'])->name('post.delete');
   });
 
   Route::get('/post/{post}/history', [PostController::class, 'getVersionHistory'])->name('post.versionHistory');

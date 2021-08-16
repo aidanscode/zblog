@@ -54,6 +54,9 @@
 <div class="container">
   <div class="d-block">
     <h1 class="float-start">Edit Post</h1>
+    <button class="btn btn-danger float-end mt-2" data-bs-toggle="modal" data-bs-target="#delete-modal">
+      Delete Post
+    </button>
   </div>
   <div class="clearfix"></div>
 
@@ -76,5 +79,27 @@
       <button type="submit" id="form-submit-btn" class="btn btn-primary mt-4">Update</button>
     </div>
   </form>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-modal-label">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this post?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, go back</button>
+        <form action="{{ $post->getDeleteUrl($blog) }}" method="POST">
+          @csrf
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit" class="btn btn-danger">Yes, delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
