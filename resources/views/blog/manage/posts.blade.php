@@ -1,6 +1,6 @@
 @extends('layouts.blog')
 
-@section('title', 'Manage')
+@section('title', 'Post Management')
 
 @section('content')
 <div class="container">

@@ -9,11 +9,15 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ $blog->getBlogIndexUrl() }}">Home</a>
         </li>
+        @if($blog->canUserManageBlog(auth()->user()))
         <li class="nav-item">
-          @if($blog->canUserManageBlog(auth()->user()))
-          <a class="nav-link" href="{{ $blog->getBlogManageUrl() }}">Manage Posts</a>
-          @endif
+          <a class="nav-link" href="{{ $blog->getBlogManageUrl() }}">Manage Blog</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('post.create', ['blog' => $blog->subdomain]) }}">Create Post</a>
+        </li>
+        @endif
       </ul>
       <div class="float-end">
         @if(auth()->check())

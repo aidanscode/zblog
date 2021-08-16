@@ -11,6 +11,7 @@ Route::domain('{blog:subdomain}.dev.aidanmurphey.com')->group(function() {
 
   Route::middleware(['auth', 'blog_can_manage'])->group(function() {
     Route::get('/manage', [BlogController::class, 'manage'])->name('blog.manage');
+    Route::get('/manage/posts', [BlogController::class, 'managePosts'])->name('blog.manage.posts');
 
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
