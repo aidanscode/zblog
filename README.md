@@ -2,11 +2,7 @@
 
 An open blogging platform where users can create and control their own blogs.
 
-## Todo (Basically all functionality)
-
-* Need some way of limiting blogs per user so nobody makes a billion blogs and reserves all the subdomains
-
-  * Possibly max active blogs per user. Can add more by deleting existing ones
+## Todo
 
 * Blog management features:
 
