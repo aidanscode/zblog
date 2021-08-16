@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Subdomain;
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 
@@ -29,6 +31,25 @@ class BlogController extends Controller {
       'blog' => $blog,
       'posts' => $posts
     ]);
+  }
+
+  public function manageSettings(Blog $blog) {
+    return view('blog.manage.settings', [
+      'blog' => $blog
+    ]);
+  }
+
+  public function saveSettings(Request $request, Blog $blog) {
+    $request->validate([
+      'display_name' => 'required|string|min:1'
+    ]);
+
+    $blog->fill([
+      'display_name' => $request->input('display_name')
+    ]);
+    $blog->save();
+
+    return redirect(route('blog.manage.settings', ['blog' => $blog->subdomain]))->with('success', 'Successfully saved blog settings!');
   }
 
 }
